@@ -19,40 +19,58 @@ class Hand:
                     self.value += int(card.value)
 
                 else:
-                    if self.cards[0].value == "A":
-                        self.value += 1
-                    if self.cards[1].value == "A":
-                        self.value += 11
-                        if self.value > 21:
-                            self.value -= 10
+                    for i in range(2):
+                        if self.cards[i].value == "A":
+                            # self.value += 1 ou alors self.value += 11
+                            # Voir mon commentaire dans le code commenté !
+                            if self.value > 21:
+                                self.value -= 10
+                        else:
+                            self.value += 10
 
-                    else:
-                        self.value += 10
+                    #  pourquoi sur card[0] on ajoute +1 et sur [1] on ajoute 11 ???
+                    # if self.cards[0].value == "A":
+                    #     self.value += 1
+                    # if self.cards[1].value == "A":
+                    #     self.value += 11
+                    #     if self.value > 21:
+                    #         self.value -= 10
+                    # else:
+                    #     self.value += 10
         else:
             for card in self.cards:
                 if card.value.isnumeric():
                     self.value += int(card.value)
 
                 else:
-                    
-                    if self.cards[0].value == "A":
-                        while (self.ace_value != "1") and (self.ace_value != "11"):
-                            self.ace_value = input(
-                                "Quelle valeur donnez vous à l'As ? 1 ou 11 ?: "
-                            )
-                        self.value += int(self.ace_value)
-                    if self.cards[1].value == "A":
-                        if self.value == 10:
-                            self.value = 11
-                        else:
+                    for i in range(2):
+                        if self.cards[i].value == "A":
                             while (self.ace_value != "1") and (self.ace_value != "11"):
                                 self.ace_value = input(
                                     "Quelle valeur donnez vous à l'As ? 1 ou 11 ?: "
                                 )
                             self.value += int(self.ace_value)
+                        else:
+                            self.value += 10
 
-                    else:
-                        self.value += 10
+                    # if self.cards[0].value == "A":
+                    #     while (self.ace_value != "1") and (self.ace_value != "11"):
+                    #         self.ace_value = input(
+                    #             "Quelle valeur donnez vous à l'As ? 1 ou 11 ?: "
+                    #         )
+                    #     self.value += int(self.ace_value)
+                    # if self.cards[1].value == "A":
+                    #     # Pourquoi ajouter mettre value a 11 si elle est == à 10 ???
+                    #     if self.value == 10:
+                    #         self.value = 11
+                    #     else:
+                    #         while (self.ace_value != "1") and (self.ace_value != "11"):
+                    #             self.ace_value = input(
+                    #                 "Quelle valeur donnez vous à l'As ? 1 ou 11 ?: "
+                    #             )
+                    #         self.value += int(self.ace_value)
+                    # else:
+                    #     self.value += 10
 
     def get_value(self):
         self.calculate_value()
